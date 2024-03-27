@@ -6,20 +6,19 @@ const playAgainButton = gameContainer.querySelector(
 const wordDisplay = document.querySelector(".game__word__display");
 const hintText = document.querySelector(".game__word__hint span");
 const keyboard = document.querySelector(".game__word__keyboard");
+const guessWordCount = document.querySelector(".game__word__guess span");
 
 let currentWord;
 let correctLetters;
-let wrongGuessCount = 0;
+let guessCount = 0;
 
 const maximumGuesses = 6;
 
 const playAgain = () => {
-  const randomWord = getRandomWord();
-  currentWord = randomWord.word;
   correctLetters = [];
-  wrongGuessCount = 0;
-  hangmanImage.src = "public/hangman-0.png"; 
-  hintText.innerText = `${wrongGuessCount} / ${maximumGuesses}`;
+  guessCount = 0;
+  hangmanImage.src = "public/hangman-0.png";
+  guessWordCount.innerHTML = `${guessCount}/${maximumGuesses}`;
   wordDisplay.innerHTML = currentWord
     .split("")
     .map(() => `<li class="letter"></li>`)
@@ -29,17 +28,22 @@ const playAgain = () => {
 };
 
 const getRandomWord = () => {
-  const wordObject = wordList[Math.floor(Math.random() * wordList.length)]; 
-  currentWord = wordObject.word; 
-  hintText.innerHTML = wordObject.hint; 
-  return wordObject;
+  const wordObject = wordList[Math.floor(Math.random() * wordList.length)];
+  currentWord = wordObject.word;
+  hintText.innerHTML = wordObject.hint;
+  playAgain();
 };
-
 const gameOver = (won) => {
-  const gameText = won ? `You found the word:` : "The correct word was:"; 
-  gameContainer.querySelector("img").src = `/${won ? "success" : "youLost"}.gif`;
-  gameContainer.querySelector("h2").innerText = won ? "Way to Go!" : "Game Over!"; 
-  gameContainer.querySelector("p span").innerHTML = `${gameText} <span>${currentWord}</span>`; 
+  const gameText = won ? "You found the word:" : "The correct word was:";
+  gameContainer.querySelector("img").src = `public/${
+    won ? "success" : "youLost"
+  }.gif`;
+  gameContainer.querySelector("h2").innerText = won
+    ? "Way to Go!"
+    : "Game Over!";
+  gameContainer.querySelector(
+    "p span"
+  ).innerHTML = `${gameText} <span>${currentWord}</span>`;
   gameContainer.classList.add("show");
 };
 
@@ -53,13 +57,13 @@ const startGame = (button, chosenLetter) => {
       }
     });
   } else {
-    wrongGuessCount++;
-    hangmanImage.src = `public/hangman-${wrongGuessCount}.png`;
+    guessCount++;
+    hangmanImage.src = `public/hangman-${guessCount}.png`;
   }
-  button.disabled = true;
-  hintText.innerText = `${wrongGuessCount} / ${maximumGuesses}`;
+   button.disabled = true;
+  guessWordCount.innerText = `${guessCount} / ${maximumGuesses}`;
 
-  if (wrongGuessCount === maximumGuesses) return gameOver(false);
+  if (guessCount === maximumGuesses) return gameOver(false);
   if (correctLetters.length === currentWord.length) return gameOver(true);
 };
 
