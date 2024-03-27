@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hangman Game</title>
+    <link rel="stylesheet" href="styles/hangman.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="scripts/wordlist.js" async defer></script>
+    <script src="scripts/hangman.js" async defer></script>
+  </head>
+  <body>
+    <div class="game__container">
+      <div class="game__container__outcome">
+        <div class="game__container__outcome__display">
+          <img src="#" alt="gif" />
+          <h2>Game Over - Try Again!</h2>
+          <p>The Correct Word Was: <span></span></p>
+          <button class="game__container__outcome__button">Play Again</button>
+        </div>
+      </div>
+      <div class="game__image">
+        <div class="game__image__hangman">
+          <img src="#" alt="hangman-img" />
+          <h1>Hangman</h1>
+        </div>
+        <div class="game__word">
+          <ul class="game__word__display"></ul>
+          <h3 class="game__word__hint">Hint: <span></span></h3>
+          <h3 class="game__word__guess">Number of Guesses: <span></span></h3>
+          <div class="game__word__keyboard"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

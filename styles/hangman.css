@@ -1,0 +1,33 @@
+@import "styles/_variables.css";
+
+.game__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: var(--green);
+    color: var(--white);
+    font-family: "Rubik", sans-serif;
+}
+
+.game__container__outcome {
+    display: none
+}
+
+.game__container .show {
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 0.4s 0.4s ease;
+}
+
+.game__container img {
+    max-width: 230px;
+}
+
+li .letter {
+    display: inline-block;
+    border-bottom: 3px solid black;
+    width: 30px;
+}
