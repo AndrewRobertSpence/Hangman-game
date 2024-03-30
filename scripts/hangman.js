@@ -2,19 +2,19 @@
 // Object properties: word, hint
 
 // Set Dom elements as variables
-let hangmanImage = document.querySelector(".game__display__image");
+let hangmanImage = document.querySelector(".game__display__img");
 let wordDisplay = document.querySelector(".game__display__word");
 let hintDisplay = document.querySelector(".game__display__hint span");
 let guessDisplay = document.querySelector(".game__display__guesses span");
 let outcomeDisplay = document.querySelector(".game__display__outcome");
 let keyboardContainer = document.getElementById("keyboard__container");
-let random = Math.floor(Math.random() * wordList.length)
+let random = Math.floor(Math.random() * wordList.length);
 
 // Set random word and hint
-let randomWord = wordList[random].word
-let randomHint = wordList[random].hint
+let randomWord = wordList[random].word;
+let randomHint = wordList[random].hint;
 console.log(randomWord, randomHint);
- 
+
 // Initiate variables for randomWord, wordGuesses, maximumAmountOfGuesses, alphabet
 let amountOfGuesses = 0;
 let maximumAmountOfGuesses = 6;
@@ -46,16 +46,23 @@ let alphabet = [
   "n",
   "m",
 ];
+
 // function wordToGuessUnderlines
 const wordToGuessUnderlines = () => {
-    wordDisplay.innerHTML = randomWord.split('').map(letter => { 
-        const letterSpan = document.createElement('span');
-        letterSpan.classList.add('letterSpan');
-        wordDisplay.appendChild(letterSpan);
-        return letterSpan.outerHTML;
-    }).join("")
+  wordDisplay.innerHTML = randomWord
+    .split("")
+    .map((letter) => {
+      const letterSpan = document.createElement("span");
+      letterSpan.classList.add("letterSpan");
+      wordDisplay.appendChild(letterSpan);
+      return letterSpan.outerHTML;
+    })
+    .join("");
 };
-wordToGuessUnderlines()
+
+// call the function wordToGuessUnderlines
+wordToGuessUnderlines();
+
 // function createKeyboardButtons
 const createKeyboardButtons = (alphabet) => {
   for (let letter of alphabet) {
@@ -65,25 +72,38 @@ const createKeyboardButtons = (alphabet) => {
     keyboardContainer.appendChild(button);
   }
 };
+
 // Call the function to create keyboard buttons
 createKeyboardButtons(alphabet);
 
 // function Display image
 const displayImage = (amountOfGuesses) => {
-  hangmanImage = `images/hangman-${amountOfGuesses}.png`;
-  return;
-};
+    hangmanImage.src = `public/hangman-${amountOfGuesses}.png`;
+  }
+
+// call the function for display image
+
+displayImage(amountOfGuesses);
+
 // function Display hint
+const displayHint = (randomHint) => {
+  hintDisplay.innerHTML = randomHint;
+};
+
+// call the function for display hint
+displayHint(randomHint);
+
+// function Display guesses
+const displayGuesses = (amountOfGuesses) => {
+  guessDisplay.innerHTML = amountOfGuesses;
+};
 
 // function Start game
 const startGame = () => {
   amountOfGuesses = 0;
-  displayImage();
-  createKeyboardButtons();
-
-  word = getRandomWord();
-  wordLetters = word.split("");
+  displayImage(amountOfGuesses);
 };
+
 // function Reset game
 
 // function End game
@@ -91,5 +111,3 @@ const startGame = () => {
 // function Guess
 
 // function Check for win or loss
-
-

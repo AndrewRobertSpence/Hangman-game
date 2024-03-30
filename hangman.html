@@ -16,9 +16,23 @@
   <script src="scripts/hangman.js" async defer></script>
 </head>
 <body>
-  <div class="game">
-    <h1 class="game__title">Hangman Game</h1>
-     <img class="game__display__img" src="">
+  <div id="game">
+    <div id="game__container">
+    <div id="game__intro__page">
+    <h1 id="game__intro__title">Welcome to the Hangman Game</h1>
+    <h2 id="game__intro__subtitle">Please enter your username</h2>
+    <input type="text" id="game__intro__username">
+    <div id="game__intro__avatar__container"></div>
+    <button id="game__intro__button">Start Game</button>
+    </div>
+    <div id="game__heading">
+      <h1 id="game__heading__title">Hangman</h1>
+      <div id="game__heading__username">
+        <div id="game__heading__avatar"></div>
+        <div id="game__heading__name"></div>
+      </div>
+    </div>
+     <img class="game__display__img" src="#" alt="hangman image">
       <div class="game__display__word"></div>
       <h3 class="game__display__hint">Hint: <span></span></h3>
       <h3 class="game__display__guesses">Number of Guesses: <span>0</span>/6</p>
