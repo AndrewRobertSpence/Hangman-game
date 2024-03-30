@@ -8,16 +8,35 @@ let hintDisplay = document.querySelector(".game__display__hint span");
 let guessDisplay = document.querySelector(".game__display__guesses span");
 let outcomeDisplay = document.querySelector(".game__display__outcome");
 let keyboardContainer = document.getElementById("keyboard__container");
-let random = Math.floor(Math.random() * wordList.length);
+let username = document.getElementById("game__intro__username");
+let avatar = document.getElementById("game__intro__avatar");
+let randomNumber = Math.floor(Math.random() * wordList.length);
 
 // Set random word and hint
-let randomWord = wordList[random].word;
-let randomHint = wordList[random].hint;
+let randomWord = wordList[randomNumber].word;
+let randomHint = wordList[randomNumber].hint;
 console.log(randomWord, randomHint);
 
-// Initiate variables for randomWord, wordGuesses, maximumAmountOfGuesses, alphabet
+// Initiate variables for randomWord, wordGuesses, maximumAmountOfGuesses, avatars, alphabet
 let amountOfGuesses = 0;
 let maximumAmountOfGuesses = 6;
+let avatars = [
+  {
+    path: "public/spidermanc-avatar.png",
+  },
+  {
+    path: "public/maninhood-avatar.png",
+  },
+  {
+    path: "public/spidermanm-avatar.png",
+  },
+  {
+    path: "public/spidermanu-avatar.png",
+  },
+  {
+    path: "public/spiderman9-avatar.png",
+  }
+];
 let alphabet = [
   "q",
   "w",
@@ -72,14 +91,27 @@ const createKeyboardButtons = (alphabet) => {
     keyboardContainer.appendChild(button);
   }
 };
-
 // Call the function to create keyboard buttons
 createKeyboardButtons(alphabet);
 
+  const createAvatarButtons = (avatars) => {
+    for (let i = 0; i < avatars.length; i++) {
+      const button = document.createElement("button");
+      const avatarPath = avatars[i].path; // Accessing avatar paths
+      button.innerHTML = `<img class="avatarImage" src="${avatarPath}" alt="avatar image">`;
+      button.addEventListener("click", () => updateProfile(avatarPath));
+      avatar.appendChild(button);
+    }
+  };
+  
+  createAvatarButtons(avatars);
+
+// update the profile of the player
+
 // function Display image
 const displayImage = (amountOfGuesses) => {
-    hangmanImage.src = `public/hangman-${amountOfGuesses}.png`;
-  }
+  hangmanImage.src = `public/hangman-${amountOfGuesses}-white.png`;
+};
 
 // call the function for display image
 

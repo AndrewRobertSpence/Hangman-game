@@ -1,6 +1,7 @@
 :root {
     --white: #fff;
-    --lightgreen: rgb(0, 163, 54);
-    --green: rgb(1, 75, 26);  
-    --yellow: rgb(214, 230, 0);
+    --darkblue: rgb(1, 0, 45);
+    --mediumblue: rgb(0, 3, 101);  
+    --darkgreen: rgb(0, 56, 17);
+    --lightorange: rgb(252, 123, 53);
     }

@@ -18,26 +18,33 @@
 <body>
   <div id="game">
     <div id="game__container">
-    <div id="game__intro__page">
+    <section id="game__intro__page">
     <h1 id="game__intro__title">Welcome to the Hangman Game</h1>
-    <h2 id="game__intro__subtitle">Please enter your username</h2>
+    <h2 id="game__intro__subtitle">Please enter your Username</h2>
     <input type="text" id="game__intro__username">
-    <div id="game__intro__avatar__container"></div>
-    <button id="game__intro__button">Start Game</button>
+    <div id="game__intro__avatar__container">
+      <h2 id="game__intro__avatar__title">Choose your Avatar</h2>
+      <div id="game__intro__avatar"></div>
     </div>
-    <div id="game__heading">
+    <button class="game__button">Start Game</button>
+    </section>
+    <section id="game__heading">
       <h1 id="game__heading__title">Hangman</h1>
       <div id="game__heading__username">
         <div id="game__heading__avatar"></div>
         <div id="game__heading__name"></div>
       </div>
-    </div>
+    </section>
      <img class="game__display__img" src="#" alt="hangman image">
       <div class="game__display__word"></div>
       <h3 class="game__display__hint">Hint: <span></span></h3>
       <h3 class="game__display__guesses">Number of Guesses: <span>0</span>/6</p>
       <div id="keyboard__container"></div>
-      <div class="game__outcome"></div>
+      <section id="game__outcome">
+        <p id="game__outcome__text"></p>
+        <img id="game__outcome__img" src="#" alt="outcome image"><br>
+        <button class="game__button">Play Again</button>
+      </section>
   </div>
   </body>
 </html>
