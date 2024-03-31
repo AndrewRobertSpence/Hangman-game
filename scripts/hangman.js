@@ -6,6 +6,7 @@ let gameIntroPage = document.getElementById("game__intro__page");
 let gameHeading = document.getElementById("game__heading");
 let gameContent = document.getElementById("game__content");
 let gameOutcome = document.getElementById("game__outcome");
+let gameBestScores = document.getElementById("game__outcome__bestscores");
 let hangmanImage = document.querySelector(".game__display__img");
 let wordDisplay = document.querySelector(".game__display__word");
 let hintDisplay = document.querySelector(".game__display__hint span");
@@ -124,14 +125,14 @@ const createAvatarButtons = (avatars) => {
           img.style.filter = "grayscale(100%)";
         } else {
           // Reset filter for the clicked image
-          img.style.filter = "none"; 
+          img.style.filter = "none";
         }
       });
       // Call function to update the profile with the selected avatar
       createUserAvatar(avatarPath);
     });
     // Add a class to all avatar buttons
-    button.classList.add("avatarButton"); 
+    button.classList.add("avatarButton");
     avatar.appendChild(button);
   }
 };
@@ -145,6 +146,11 @@ const createUsername = () => {
 // update the profile of the player
 const createUserAvatar = (avatarPath) => {
   headingAvatar.innerHTML = `<img class="avatarImage" src="${avatarPath}" alt="avatar image">`;
+};
+// function for if Avatar is clicked
+const isAvatarClicked = () => {
+  const activeAvatarButton = document.querySelector(".avatarButton.active");
+  return activeAvatarButton !== null;
 };
 
 // function Display image
@@ -169,6 +175,16 @@ gameHeading.classList.add("hidden");
 
 // function Start game
 const startGame = () => {
+  if (username.value === "") {
+    alert("Please enter a username");
+    // Exit the function if no username is entered
+    return;
+  }
+  if (!isAvatarClicked()) {
+    alert("Please select an avatar before starting the game.");
+    // Exit the function if no avatar is clicked
+    return;
+  }
   gameIntroPage.classList.add("hidden");
   gameOutcome.classList.add("hidden");
   gameHeading.classList.remove("hidden");
@@ -178,7 +194,6 @@ const startGame = () => {
   displayGuesses(amountOfGuesses);
   displayImage(amountOfGuesses);
   displayHint(randomHint);
-  updateProfile();
   createUsername();
 };
 
