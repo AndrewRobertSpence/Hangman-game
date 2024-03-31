@@ -26,8 +26,9 @@ let randomHint = wordList[randomNumber].hint;
 console.log(randomWord, randomHint);
 
 // Initiate variables for randomWord, wordGuesses, maximumAmountOfGuesses, avatars, alphabet
-let amountOfGuesses = 1;
+let amountOfGuesses = 0;
 let maximumAmountOfGuesses = 6;
+let guessedLetters = [];
 let avatars = [
   {
     path: "public/spidermanc-avatar.png",
@@ -96,13 +97,59 @@ const createKeyboardButtons = (alphabet) => {
     button.addEventListener("click", (e) => {
       // Add 'active' class to the clicked button
       e.target.classList.add("active");
-      startGame(e.target, letter);
+      // startGame(e.target, letter);
     });
     keyboardContainer.appendChild(button);
   }
 };
 // call the createKeyboardButtons function
 createKeyboardButtons(alphabet);
+
+const keyboardButtons = document.querySelectorAll(".keyboard__button");
+keyboardButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    // Get the clicked letter from the button's text content
+    const letter = button.textContent.toLowerCase();
+    // Call the guessLetter function with the clicked letter
+    guessLetter(letter);
+    // Disable the button after it's clicked
+    button.disabled = true;
+  });
+});
+
+// function for guessLetter
+// Function to handle letter guesses
+const guessLetter = (letter) => {
+  // Check if the guessed letter exists in the random word
+  const wordLetters = randomWord.split("");
+  let letterFound = false;
+
+  wordLetters.forEach((char, index) => {
+    if (char === letter) {
+      // If the letter exists and has not been guessed yet, update the display
+      if (!guessedLetters.includes(letter)) {
+        const letterSpan = wordDisplay.querySelectorAll(".letterSpan")[index];
+        letterSpan.textContent = letter;
+        letterFound = true;
+      }
+    }
+  });
+
+  // If the guessed letter is not in the word, increment the guesses counter and update display
+  if (!letterFound) {
+    amountOfGuesses++;
+    displayGuesses(amountOfGuesses);
+    displayImage(amountOfGuesses);
+  }
+
+  // Add the guessed letter to the array of guessed letters
+  if (!guessedLetters.includes(letter)) {
+    guessedLetters.push(letter);
+  }
+
+  // Check for win condition after updating display
+  checkWin();
+};
 
 const createAvatarButtons = (avatars) => {
   for (let i = 0; i < avatars.length; i++) {
@@ -199,10 +246,73 @@ const startGame = () => {
 
 startButton.addEventListener("click", startGame);
 
-// function Reset game
-
-// function End game
-
-// function Guess
-
 // function Check for win or loss
+const checkWin = () => {
+  const wordLetters = randomWord.split("");
+  const guessedLetters = Array.from(
+    wordDisplay.querySelectorAll(".letterSpan")
+  ).map((span) => span.textContent);
+
+  // Check if all letters in the word have been guessed
+  if (wordLetters.every((letter) => guessedLetters.includes(letter))) {
+    // Delay transition to game outcome screen after 2 seconds if game is won
+    setTimeout(() => {
+      gameHeading.classList.add("hidden");
+      gameContent.classList.add("hidden");
+      gameOutcome.classList.remove("hidden");
+    }, 2000); // 2000 milliseconds delay (2 seconds)
+  }
+  // Check if maximum number of guesses reached
+  if (amountOfGuesses === 6) {
+    // Delay transition to game outcome screen after 2 seconds if maximum guesses reached
+    setTimeout(() => {
+      gameHeading.classList.add("hidden");
+      gameContent.classList.add("hidden");
+      gameOutcome.classList.remove("hidden");
+    }, 2000); // 2000 milliseconds delay (2 seconds)
+  }
+};
+
+// Function to reset the game
+// Function to reset the game
+const resetGame = () => {
+  // Clear the guessed letters array
+  guessedLetters = [];
+
+  // Reset the guessed letters display
+  const letterSpans = wordDisplay.querySelectorAll(".letterSpan");
+  letterSpans.forEach((span) => {
+    span.textContent = "";
+  });
+
+  // Reset the hangman image
+  amountOfGuesses = 0;
+  displayGuesses(amountOfGuesses);
+  displayImage(amountOfGuesses);
+
+  // Clear the input field
+  username.value = "";
+
+  // Remove the active class from all avatar buttons
+  const allAvatarButtons = document.querySelectorAll(".avatarButton");
+  allAvatarButtons.forEach((btn) => {
+    btn.classList.remove("active");
+  });
+
+  // Reset the avatar selection and remove grayscale filter
+  const allAvatarImages = document.querySelectorAll(".avatarImage");
+  allAvatarImages.forEach((img) => {
+    img.style.filter = "none";
+  });
+  headingAvatar.innerHTML = "";
+
+  // Show the intro page and hide other sections
+  gameIntroPage.classList.remove("hidden");
+  gameOutcome.classList.add("hidden");
+  gameHeading.classList.add("hidden");
+  gameContent.classList.add("hidden");
+};
+
+// Event listener for the "Play Again" button
+const playAgainButton = document.querySelector(".game__button");
+playAgainButton.addEventListener("click", resetGame);

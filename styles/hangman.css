@@ -10,10 +10,18 @@ body {
 .letterSpan {
   display: inline-block;
   margin-bottom: 25px;
-  border-bottom: 7px solid white;
+  border-bottom: 4px solid white;
   width: 50px;
-  margin-right: 10px
-}
+  margin-right: 10px;
+  font-size: 4rem;
+  text-align: center;
+  font-family: Caveat, sans-serif;
+  font-weight: 700;
+  margin-left: 10px;
+  text-transform: uppercase;
+  -webkit-text-stroke: 1px black;
+  text-stroke: 1px black;
+  }
 
 .avatarImage {
   width: 60px;
@@ -43,7 +51,9 @@ body {
   box-shadow: 4px 5px 0px 0px rgba(255, 255, 255, 0.4);
   transition: box-shadow 0.3s ease;
   font-family: "Rubik", sans-serif;
-  font-weight: 600;
+  font-weight: 700;
+  -webkit-text-stroke: 1px black; 
+  text-stroke: 1px black;
  }
 
  .game__start__button:hover {
@@ -53,7 +63,9 @@ body {
   0px 0px 40px rgba(255, 255, 255, 0.8),
   0px 0px 50px rgba(255, 255, 255, 0.7),
   0px 0px 60px rgba(255, 255, 255, 0.6); 
-  background-color: var(--darkgreen);
+  -webkit-text-stroke: 1px black; 
+  text-stroke: 1px black;
+  background-color: var(--lightgreen);
   transform: scale(1.03);
 }
 
@@ -66,6 +78,10 @@ body {
   border: 0.5px solid var(--white);
   border-radius: 10px;
   margin: 5px; 
+  font-family: "Rubik", sans-serif;
+  font-weight: 500;
+  -webkit-text-stroke: 0.5px black; 
+  text-stroke: 1px black;
 }
 
 .keyboard__button.active {
