@@ -109,7 +109,29 @@ const createAvatarButtons = (avatars) => {
     // Accessing avatar paths
     const avatarPath = avatars[i].path;
     button.innerHTML = `<img class="avatarImage" src="${avatarPath}" alt="avatar image">`;
-    button.addEventListener("click", () => createUserAvatar(avatarPath));
+    button.addEventListener("click", () => {
+      // Remove the 'active' class from all avatar buttons
+      const allAvatarButtons = document.querySelectorAll(".avatarButton");
+      allAvatarButtons.forEach((btn) => {
+        btn.classList.remove("active");
+      });
+      // Add the 'active' class to the clicked button
+      button.classList.add("active");
+      // Apply grayscale to all avatar images except the clicked one
+      const allAvatarImages = document.querySelectorAll(".avatarImage");
+      allAvatarImages.forEach((img) => {
+        if (img !== button.querySelector("img")) {
+          img.style.filter = "grayscale(100%)";
+        } else {
+          // Reset filter for the clicked image
+          img.style.filter = "none"; 
+        }
+      });
+      // Call function to update the profile with the selected avatar
+      createUserAvatar(avatarPath);
+    });
+    // Add a class to all avatar buttons
+    button.classList.add("avatarButton"); 
     avatar.appendChild(button);
   }
 };
