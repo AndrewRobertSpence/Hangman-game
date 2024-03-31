@@ -2,6 +2,10 @@
 // Object properties: word, hint
 
 // Set Dom elements as variables
+let gameIntroPage = document.getElementById("game__intro__page");
+let gameHeading = document.getElementById("game__heading");
+let gameContent = document.getElementById("game__content");
+let gameOutcome = document.getElementById("game__outcome");
 let hangmanImage = document.querySelector(".game__display__img");
 let wordDisplay = document.querySelector(".game__display__word");
 let hintDisplay = document.querySelector(".game__display__hint span");
@@ -10,6 +14,9 @@ let outcomeDisplay = document.querySelector(".game__display__outcome");
 let keyboardContainer = document.getElementById("keyboard__container");
 let username = document.getElementById("game__intro__username");
 let avatar = document.getElementById("game__intro__avatar");
+let headingAvatar = document.getElementById("game__heading__avatar");
+let headingUsername = document.getElementById("game__heading__name");
+let startButton = document.querySelector(".game__start__button");
 let randomNumber = Math.floor(Math.random() * wordList.length);
 
 // Set random word and hint
@@ -18,7 +25,7 @@ let randomHint = wordList[randomNumber].hint;
 console.log(randomWord, randomHint);
 
 // Initiate variables for randomWord, wordGuesses, maximumAmountOfGuesses, avatars, alphabet
-let amountOfGuesses = 0;
+let amountOfGuesses = 1;
 let maximumAmountOfGuesses = 6;
 let avatars = [
   {
@@ -35,42 +42,43 @@ let avatars = [
   },
   {
     path: "public/spiderman9-avatar.png",
-  }
+  },
 ];
+
 let alphabet = [
-  "q",
-  "w",
-  "e",
-  "r",
-  "t",
-  "y",
-  "u",
-  "i",
-  "o",
-  "p",
   "a",
-  "s",
+  "b",
+  "c",
   "d",
+  "e",
   "f",
   "g",
   "h",
+  "i",
   "j",
   "k",
   "l",
-  "z",
-  "x",
-  "c",
-  "v",
-  "b",
-  "n",
   "m",
+  "n",
+  "o",
+  "p",
+  "q",
+  "r",
+  "s",
+  "t",
+  "u",
+  "v",
+  "w",
+  "x",
+  "y",
+  "z",
 ];
 
-// function wordToGuessUnderlines
+// Function wordToGuessUnderlines
 const wordToGuessUnderlines = () => {
   wordDisplay.innerHTML = randomWord
     .split("")
-    .map((letter) => {
+    .map(() => {
       const letterSpan = document.createElement("span");
       letterSpan.classList.add("letterSpan");
       wordDisplay.appendChild(letterSpan);
@@ -78,63 +86,81 @@ const wordToGuessUnderlines = () => {
     })
     .join("");
 };
-
-// call the function wordToGuessUnderlines
-wordToGuessUnderlines();
-
-// function createKeyboardButtons
+// Function createKeyboardButtons
 const createKeyboardButtons = (alphabet) => {
   for (let letter of alphabet) {
     const button = document.createElement("button");
     button.innerHTML = letter;
-    button.addEventListener("click", (e) => startGame(e.target, letter));
+    button.classList.add("keyboard__button");
+    button.addEventListener("click", (e) => {
+      // Add 'active' class to the clicked button
+      e.target.classList.add("active");
+      startGame(e.target, letter);
+    });
     keyboardContainer.appendChild(button);
   }
 };
-// Call the function to create keyboard buttons
+// call the createKeyboardButtons function
 createKeyboardButtons(alphabet);
 
-  const createAvatarButtons = (avatars) => {
-    for (let i = 0; i < avatars.length; i++) {
-      const button = document.createElement("button");
-      const avatarPath = avatars[i].path; // Accessing avatar paths
-      button.innerHTML = `<img class="avatarImage" src="${avatarPath}" alt="avatar image">`;
-      button.addEventListener("click", () => updateProfile(avatarPath));
-      avatar.appendChild(button);
-    }
-  };
-  
-  createAvatarButtons(avatars);
+const createAvatarButtons = (avatars) => {
+  for (let i = 0; i < avatars.length; i++) {
+    const button = document.createElement("button");
+    // Accessing avatar paths
+    const avatarPath = avatars[i].path;
+    button.innerHTML = `<img class="avatarImage" src="${avatarPath}" alt="avatar image">`;
+    button.addEventListener("click", () => createUserAvatar(avatarPath));
+    avatar.appendChild(button);
+  }
+};
+createAvatarButtons(avatars);
 
+// Function createUsername
+const createUsername = () => {
+  const enteredUsername = username.value;
+  headingUsername.innerHTML = enteredUsername;
+};
 // update the profile of the player
+const createUserAvatar = (avatarPath) => {
+  headingAvatar.innerHTML = `<img class="avatarImage" src="${avatarPath}" alt="avatar image">`;
+};
 
 // function Display image
 const displayImage = (amountOfGuesses) => {
   hangmanImage.src = `public/hangman-${amountOfGuesses}-white.png`;
 };
 
-// call the function for display image
-
-displayImage(amountOfGuesses);
-
 // function Display hint
 const displayHint = (randomHint) => {
   hintDisplay.innerHTML = randomHint;
 };
-
-// call the function for display hint
-displayHint(randomHint);
 
 // function Display guesses
 const displayGuesses = (amountOfGuesses) => {
   guessDisplay.innerHTML = amountOfGuesses;
 };
 
+// hide appropriate sections before game starts
+gameContent.classList.add("hidden");
+gameOutcome.classList.add("hidden");
+gameHeading.classList.add("hidden");
+
 // function Start game
 const startGame = () => {
-  amountOfGuesses = 0;
+  gameIntroPage.classList.add("hidden");
+  gameOutcome.classList.add("hidden");
+  gameHeading.classList.remove("hidden");
+  gameContent.classList.remove("hidden");
+  amountOfGuesses = 1;
+  wordToGuessUnderlines();
+  displayGuesses(amountOfGuesses);
   displayImage(amountOfGuesses);
+  displayHint(randomHint);
+  updateProfile();
+  createUsername();
 };
+
+startButton.addEventListener("click", startGame);
 
 // function Reset game
 
