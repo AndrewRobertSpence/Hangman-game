@@ -16,8 +16,13 @@ let keyboardContainer = document.getElementById("keyboard__container");
 let username = document.getElementById("game__intro__username");
 let avatar = document.getElementById("game__intro__avatar");
 let headingAvatar = document.getElementById("game__heading__avatar");
+let allAvatarButtons = document.querySelectorAll(".avatarButton");
+let allAvatarImages = document.querySelectorAll(".avatarImage");
 let headingUsername = document.getElementById("game__heading__name");
 let startButton = document.querySelector(".game__start__button");
+let letterSpans = wordDisplay.querySelectorAll(".letterSpan");
+let gameOutcomeText = document.getElementById("game__outcome__text");
+let tableBody = document.querySelector("#game__outcome__bestscores tbody");
 let randomNumber = Math.floor(Math.random() * wordList.length);
 
 // Set random word and hint
@@ -29,6 +34,7 @@ console.log(randomWord, randomHint);
 let amountOfGuesses = 0;
 let maximumAmountOfGuesses = 6;
 let guessedLetters = [];
+let profiles = [];
 let avatars = [
   {
     path: "public/spidermanc-avatar.png",
@@ -134,19 +140,16 @@ const guessLetter = (letter) => {
       }
     }
   });
-
   // If the guessed letter is not in the word, increment the guesses counter and update display
   if (!letterFound) {
     amountOfGuesses++;
     displayGuesses(amountOfGuesses);
     displayImage(amountOfGuesses);
   }
-
   // Add the guessed letter to the array of guessed letters
   if (!guessedLetters.includes(letter)) {
     guessedLetters.push(letter);
   }
-
   // Check for win condition after updating display
   checkWin();
 };
@@ -185,19 +188,21 @@ const createAvatarButtons = (avatars) => {
 };
 createAvatarButtons(avatars);
 
-// Function createUsername
-const createUsername = () => {
-  const enteredUsername = username.value;
-  headingUsername.innerHTML = enteredUsername;
-};
 // update the profile of the player
 const createUserAvatar = (avatarPath) => {
   headingAvatar.innerHTML = `<img class="avatarImage" src="${avatarPath}" alt="avatar image">`;
 };
+
 // function for if Avatar is clicked
 const isAvatarClicked = () => {
   const activeAvatarButton = document.querySelector(".avatarButton.active");
   return activeAvatarButton !== null;
+};
+
+// Function createUsername
+const createUsername = () => {
+  const enteredUsername = username.value;
+  headingUsername.innerHTML = enteredUsername;
 };
 
 // function Display image
@@ -255,6 +260,7 @@ const checkWin = () => {
 
   // Check if all letters in the word have been guessed
   if (wordLetters.every((letter) => guessedLetters.includes(letter))) {
+    createProfile();
     // Delay transition to game outcome screen after 2 seconds if game is won
     setTimeout(() => {
       gameHeading.classList.add("hidden");
@@ -264,6 +270,7 @@ const checkWin = () => {
   }
   // Check if maximum number of guesses reached
   if (amountOfGuesses === 6) {
+    gameOutcomeText = `The correct answer was: ${randomWord}`;
     // Delay transition to game outcome screen after 2 seconds if maximum guesses reached
     setTimeout(() => {
       gameHeading.classList.add("hidden");
@@ -278,34 +285,25 @@ const checkWin = () => {
 const resetGame = () => {
   // Clear the guessed letters array
   guessedLetters = [];
-
   // Reset the guessed letters display
-  const letterSpans = wordDisplay.querySelectorAll(".letterSpan");
   letterSpans.forEach((span) => {
     span.textContent = "";
   });
-
   // Reset the hangman image
   amountOfGuesses = 0;
   displayGuesses(amountOfGuesses);
   displayImage(amountOfGuesses);
-
   // Clear the input field
   username.value = "";
-
   // Remove the active class from all avatar buttons
-  const allAvatarButtons = document.querySelectorAll(".avatarButton");
   allAvatarButtons.forEach((btn) => {
     btn.classList.remove("active");
   });
-
   // Reset the avatar selection and remove grayscale filter
-  const allAvatarImages = document.querySelectorAll(".avatarImage");
   allAvatarImages.forEach((img) => {
     img.style.filter = "none";
   });
   headingAvatar.innerHTML = "";
-
   // Show the intro page and hide other sections
   gameIntroPage.classList.remove("hidden");
   gameOutcome.classList.add("hidden");
@@ -316,3 +314,55 @@ const resetGame = () => {
 // Event listener for the "Play Again" button
 const playAgainButton = document.querySelector(".game__button");
 playAgainButton.addEventListener("click", resetGame);
+
+// Function to create profile
+const createProfile = () => {
+  // Get current date
+  const currentDate = new Date().toLocaleDateString();
+
+  // Get selected avatar path
+  const selectedAvatar = document.querySelector(".avatarButton.active img").src;
+
+  // Extract the part of the avatar path starting from "public"
+  const avatarPath = selectedAvatar.substring(selectedAvatar.indexOf("public"));
+
+  // Get entered username
+  const enteredUsername = username.value;
+
+  // Create profile object
+  const profile = {
+    date: currentDate,
+    avatar: avatarPath,
+    username: enteredUsername,
+    guesses: amountOfGuesses
+  };
+  // Add profile to profiles array
+  profiles.push(profile);
+  // Sort profiles by number of guesses (ascending)
+  profiles.sort((a, b) => a.guesses - b.guesses);
+  // Update best scores table
+  updateBestScoresTable();
+  // Optionally, you can log the created profile for debugging
+  console.log("New Profile:", profile);
+};
+
+// Function to update best scores table
+const updateBestScoresTable = () => {
+    tableBody.innerHTML = ""; // Clear existing rows
+  // Add up to 10 best scores to the table
+  for (let i = 0; i < Math.min(profiles.length, 10); i++) {
+    const profile = profiles[i];
+    const row = `
+      <tr>
+        <td>${profile.date}</td>
+        <td>
+          <img src="${profile.avatar}" alt="avatar">
+          <span>${profile.username}</span>
+        </td>
+        <td>${profile.guesses}</td>
+      </tr>
+    `;
+    tableBody.insertAdjacentHTML("beforeend", row);
+  }
+};
+
