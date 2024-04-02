@@ -221,11 +221,11 @@ const displayGuesses = (amountOfGuesses) => {
   guessDisplay.innerHTML = amountOfGuesses;
 };
 
-  // JavaScript code to hide gameOutcome, gameHeading and gameContent elements
-  gameContent.style.display = "none";
-  // gameHeading.classList.add("hidden");
-  console.log(gameContent.classList.contains("hidden"));
-  // console.log(gameHeading.classList.contains("hidden"));
+// JavaScript code to hide gameOutcome, gameHeading and gameContent elements
+gameContent.style.display = "none";
+// gameHeading.classList.add("hidden");
+console.log(gameContent.classList.contains("hidden"));
+// console.log(gameHeading.classList.contains("hidden"));
 
 // function Start game
 const startGame = () => {
@@ -240,10 +240,10 @@ const startGame = () => {
     return;
   }
   // gameHeading.classList.remove("hidden");
-    // Hide the game intro page
-   gameIntroPage.style.display = "none";
-      // Show the game content
-    gameContent.style.display = "block";
+  // Hide the game intro page
+  gameIntroPage.style.display = "none";
+  // Show the game content
+  gameContent.style.display = "block";
   amountOfGuesses = 0;
   wordToGuessUnderlines();
   displayGuesses(amountOfGuesses);
@@ -260,7 +260,7 @@ const resetGame = () => {
 
   // Clear the guessed letters array
   guessedLetters = [];
-  
+
   // Reset the guessed letters display
   letterSpans.forEach((span) => {
     span.textContent = "";
@@ -311,10 +311,9 @@ const resetGame = () => {
   });
 };
 
-
 // document.addEventListener('DOMContentLoaded', function() {
 //   console.log("DOM loaded");
-  playAgainButton.addEventListener("click", resetGame);
+playAgainButton.addEventListener("click", resetGame);
 // });
 
 const checkWin = () => {
@@ -342,7 +341,7 @@ const checkWin = () => {
   if (amountOfGuesses === maximumAmountOfGuesses) {
     console.log("Maximum guesses reached.");
     gameOutcomeImage.src = "public/Try-Again.gif";
-    gameOutcomeText.innerHTML = `The correct answer was: ${randomWord}`;
+    gameOutcomeText.innerHTML = `The correct answer was:  <span>${randomWord}</span>`;
     // Delay transition to game outcome screen after 2 seconds if maximum guesses reached
     setTimeout(() => {
       console.log("Showing game outcome...");

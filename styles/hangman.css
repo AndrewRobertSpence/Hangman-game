@@ -388,6 +388,10 @@ body {
     font-size: 1.8rem;
     margin-bottom: 10px;
   }
+  #game__intro__subtitle {
+    margin-bottom: 20px;
+    margin-top: 25px;
+  }
   #game__intro__username {
     width: 350px;
     text-align: center;
@@ -397,7 +401,7 @@ body {
   }
   #game__intro__title {
     font-size: 2.5rem;
-    margin-top: 30px;
+    margin-top: 20px;
   }
   .avatarImage {
     width: 65px;
@@ -408,7 +412,7 @@ body {
   .game__start__button {
     font-size: 2rem;
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
   }
   #game__intro__page {
     padding-bottom: 20px;
@@ -420,8 +424,9 @@ body {
     transform: scale(0.6);
   }
   #game__display__img {
-    transform: scale(0.8);
+    transform: scale(1.2);
     margin-bottom: -20px;
+    margin-top: -40px;
   }
   #game__display__container {
     display: flex;
@@ -457,6 +462,50 @@ body {
     width: 620px;
     justify-content: center;
     align-items: center;
+  }
+  #game__outcome__bestscores th {
+    font-size: 1.4rem;
+    width: calc(100% / 3);
+  }
+  #game__outcome__bestscores h2 {
+    font-size: 2.2rem;
+  }
+  .bestscore__row {
+    font-size: 1.3rem;
+  }
+  #game__outcome__bestscores {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  #game__outcome__img {
+    transform: scale(0.8);
+    margin-bottom: -50px;
+    margin-top: -40px;
+  }
+  #game__outcome__text {
+    font-size: 1.5rem;
+    margin-top: 20px;
+  }
+  #game__outcome__text span {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--lightorange);
+    -webkit-text-stroke: 0.25px black;
+    text-stroke: 0.5px black;
+    text-transform: uppercase;
+  }
+  .game__playagain__button {
+    margin-top: 35px;
+    font-size: 2rem;
+  }
+  .profile__avatar {
+    width: 35px;
+    vertical-align: middle;
+  }
+  .profile__username {
+    font-size: 1.8rem;
+    vertical-align: middle;
+    margin-left: 10px;
   }
 }
 
