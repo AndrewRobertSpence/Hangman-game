@@ -136,7 +136,7 @@ font-size: 1.3rem;
   color: var(--lightorange);
   text-transform: uppercase;
   -webkit-text-stroke: 0.25px black;
-  text-stroke: 0.5px black
+  text-stroke: 0.5px black;
   overflow: hidden;
 }
 
@@ -379,5 +379,42 @@ font-size: 1.3rem;
   padding-top: 5px;
   font-size: 0.8rem;
   font-weight: 500;
+}
+
+@media screen and (min-width: 768px) {
+  #game__intro__subtitle,
+  #game__intro__avatar__title {
+    margin-top: 15px;
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  }
+  #game__intro__username {
+    width: 350px;
+    text-align: center;
+  }
+  #game__intro__title span {
+    font-size: 3rem;
+  }
+  #game__intro__title {
+    font-size: 2.5rem;
+    margin-top: 30px;
+  }
+  .avatarImage {
+    width: 65px;
+  }
+  .avatarButton {
+    margin: 7px;
+   }
+   .game__start__button {
+     margin-top: 20px;
+     margin-bottom: 20px;
+   }
+   #game__intro__page {
+    padding-bottom: 20px
+   }
+}
+
+@media screen and (min-width: 1440px) {
+
 }
 
