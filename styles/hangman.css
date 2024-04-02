@@ -5,7 +5,7 @@ body {
   font-weight: 600;
   color: var(--white);
   background-image: url("/public/background-pattern.png");
- }
+}
 
 #game__container {
   justify-content: center;
@@ -106,7 +106,7 @@ body {
 
 #game__intro__subtitle,
 #game__intro__avatar__title {
-font-size: 1.3rem;
+  font-size: 1.3rem;
 }
 
 #game__intro__subtitle {
@@ -141,7 +141,7 @@ font-size: 1.3rem;
 }
 
 .letterSpan:hover {
-  transform: scale(1.1);
+  transform: scale(1.2);
 }
 
 .avatarImage {
@@ -269,7 +269,7 @@ font-size: 1.3rem;
   -webkit-text-stroke: 0.5px black;
   text-stroke: 1px black;
   font-size: 2.5rem;
-  margin-bottom: 5px; 
+  margin-bottom: 5px;
   padding: 10px;
   margin-top: 10px;
 }
@@ -283,7 +283,7 @@ font-size: 1.3rem;
   justify-content: center;
   align-items: center;
   -webkit-text-stroke: 0.25px black;
-  text-stroke: 0.5px black
+  text-stroke: 0.5px black;
 }
 
 .bestscore__row {
@@ -296,7 +296,7 @@ font-size: 1.3rem;
   align-items: center;
   vertical-align: middle;
   -webkit-text-stroke: 0.25px black;
-  text-stroke: 0.5px black
+  text-stroke: 0.5px black;
 }
 
 .profile__info {
@@ -306,10 +306,10 @@ font-size: 1.3rem;
 }
 
 .profile__avatar {
-  width: 30px; 
-  border-radius: 50%; 
+  width: 30px;
+  border-radius: 50%;
   align-items: center;
-  justify-content: center; 
+  justify-content: center;
 }
 
 .profile__username {
@@ -318,8 +318,8 @@ font-size: 1.3rem;
   font-size: 1.1rem;
   font-family: "Caveat", cursive;
   color: var(--white);
-  align-items: center; 
-  justify-content: center; 
+  align-items: center;
+  justify-content: center;
 }
 
 .profile__date {
@@ -335,7 +335,7 @@ font-size: 1.3rem;
 }
 
 .bestscore__cell {
-  box-sizing: border-box; 
+  box-sizing: border-box;
 }
 
 #game__outcome__bestscores h2 {
@@ -343,8 +343,8 @@ font-size: 1.3rem;
 }
 
 #game__outcome__img {
-  max-width: 100%; 
-  height: auto; 
+  max-width: 100%;
+  height: auto;
   margin: 0 auto;
   display: block;
   transform: scale(0.9);
@@ -352,8 +352,8 @@ font-size: 1.3rem;
 
 #game__heading__title {
   max-width: 100%;
-  height: auto; 
-  margin: 0 auto; 
+  height: auto;
+  margin: 0 auto;
   display: block;
   transform: scale(0.9);
 }
@@ -370,8 +370,8 @@ font-size: 1.3rem;
 .game__display__img {
   max-width: 100%;
   transform: scale(0.8);
-  margin-top: -50px; 
-  margin-bottom: -30px; 
+  margin-top: -50px;
+  margin-bottom: -30px;
 }
 
 .game__display__hint,
@@ -385,8 +385,8 @@ font-size: 1.3rem;
   #game__intro__subtitle,
   #game__intro__avatar__title {
     margin-top: 15px;
-  font-size: 1.8rem;
-  margin-bottom: 10px;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
   }
   #game__intro__username {
     width: 350px;
@@ -404,17 +404,61 @@ font-size: 1.3rem;
   }
   .avatarButton {
     margin: 7px;
-   }
-   .game__start__button {
-     margin-top: 20px;
-     margin-bottom: 20px;
-   }
-   #game__intro__page {
-    padding-bottom: 20px
-   }
+  }
+  .game__start__button {
+    font-size: 2rem;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  #game__intro__page {
+    padding-bottom: 20px;
+  }
+  #game__heading__title {
+    margin-top: -60px;
+    margin-bottom: -90px;
+    z-index: -1;
+    transform: scale(0.6);
+  }
+  #game__display__img {
+    transform: scale(0.8);
+    margin-bottom: -20px;
+  }
+  #game__display__container {
+    display: flex;
+    flex-direction: row;
+    padding-right: 60px;
+    border-bottom: -60px;
+  }
+  #game__display__details {
+    padding-top: 80px;
+  }
+  .letterSpan {
+    border-bottom: 5px solid white;
+    margin-top: 30px;
+    width: 45px;
+    height: 50px;
+    font-size: 2.5rem;
+  }
+  .game__display__hint,
+  .game__display__guesses {
+    padding-top: 0px;
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+  .keyboard__button {
+    text-align: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    padding: 8px 10px;
+    margin: 4px;
+    width: 35px;
+  }
+  #keyboard__container {
+    width: 620px;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 @media screen and (min-width: 1440px) {
-
 }
-
