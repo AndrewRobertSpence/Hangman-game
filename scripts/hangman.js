@@ -312,10 +312,10 @@ const resetGame = () => {
 };
 
 
-document.addEventListener('DOMContentLoaded', function() {
-  console.log("DOM loaded");
+// document.addEventListener('DOMContentLoaded', function() {
+//   console.log("DOM loaded");
   playAgainButton.addEventListener("click", resetGame);
-});
+// });
 
 const checkWin = () => {
   console.log("Checking win...");

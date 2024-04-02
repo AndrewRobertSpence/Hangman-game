@@ -5,15 +5,11 @@ body {
   font-weight: 600;
   color: var(--white);
   background-image: url("/public/background-pattern.png");
-  background-repeat: repeat;
-}
+ }
 
 #game__container {
-  display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
   margin: 20px;
   margin-top: 20px;
 }
@@ -89,7 +85,7 @@ body {
 
 #game__intro__title {
   margin-bottom: 10px;
-  padding-bottom: 0px;
+  margin-top: 50px;
   padding-bottom: 0px;
   font-size: 2rem;
 }
@@ -106,6 +102,15 @@ body {
 #game__intro__avatar__title {
   text-align: center;
   justify-content: center;
+}
+
+#game__intro__subtitle,
+#game__intro__avatar__title {
+font-size: 1.3rem;
+}
+
+#game__intro__subtitle {
+  margin-top: 40px;
 }
 
 #game__intro__gametitle {
@@ -130,8 +135,8 @@ body {
   margin-left: 1px;
   color: var(--lightorange);
   text-transform: uppercase;
-  -webkit-text-stroke: 0.25px var(--white);
-  text-stroke: 0.5px var(--white);
+  -webkit-text-stroke: 0.25px black;
+  text-stroke: 0.5px black
   overflow: hidden;
 }
 
@@ -162,9 +167,9 @@ body {
 .game__button,
 .game__start__button,
 .game__playagain__button {
-  background-color: var(--mediumpurple);
+  background-color: var(--lightpurple);
   color: var(--lightorange);
-  font-size: 2rem;
+  font-size: 1.5rem;
   padding: 10px 30px;
   border: 2px solid white;
   border-radius: 20px;
@@ -172,7 +177,7 @@ body {
   transition: box-shadow 0.3s ease;
   font-family: "Rubik", sans-serif;
   font-weight: 700;
-  -webkit-text-stroke: 0.5px var(--white);
+  -webkit-text-stroke: 0.25px black;
   text-stroke: 0.5px black;
   margin-top: 50px;
   cursor: pointer;
@@ -277,6 +282,8 @@ body {
   text-align: center;
   justify-content: center;
   align-items: center;
+  -webkit-text-stroke: 0.25px black;
+  text-stroke: 0.5px black
 }
 
 .bestscore__row {
@@ -284,10 +291,12 @@ body {
   background-color: var(--mediumpurple);
   padding: 10px;
   text-align: left;
-  font-size: 0.8rem;
+  font-size: 1rem;
   justify-content: center;
   align-items: center;
   vertical-align: middle;
+  -webkit-text-stroke: 0.25px black;
+  text-stroke: 0.5px black
 }
 
 .profile__info {
@@ -371,3 +380,4 @@ body {
   font-size: 0.8rem;
   font-weight: 500;
 }
+
