@@ -4,7 +4,8 @@ body {
   font-family: "Rubik", sans-serif;
   font-weight: 600;
   color: var(--white);
-  background-image: url("../public/background-pattern.png");
+  background-color: #2d00b4;
+  background-image: url("/Hangman-game/public/background-pattern.png");
 }
 
 #game__container {
@@ -489,7 +490,7 @@ body {
     font-size: 2.5rem;
   }
   .game__display__hint,
-.game__display__guesses {
+  .game__display__guesses {
     padding-top: 0px;
     font-size: 1.2rem;
     font-weight: 500;
