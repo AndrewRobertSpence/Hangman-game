@@ -4,7 +4,7 @@ body {
   font-family: "Rubik", sans-serif;
   font-weight: 600;
   color: var(--white);
-  background-image: url("/public/background-pattern.png");
+  background-image: url("../public/background-pattern.png");
 }
 
 #game__container {
@@ -46,14 +46,14 @@ body {
 
 
 #game__intro__page {
-  display: "block";
+  display: block;
   justify-content: center;
   text-align: center;
   margin-top: 20px;
 }
 
 #game__heading__username {
-  display: "block";
+  display: block;
   justify-content: center;
   text-align: center;
 }
@@ -63,14 +63,14 @@ body {
 }
 
 #game__heading__avatar img{
-  display: "block";
+  display: block;
   justify-content: center;
   text-align: center;
   width: 35px;
 }
 
 #game__content {
-  display: "block";
+  display: block;
   justify-content: center;
   text-align: center;
   display: block;
@@ -489,7 +489,7 @@ body {
     font-size: 2.5rem;
   }
   .game__display__hint,
-  .game__display__guesses {
+.game__display__guesses {
     padding-top: 0px;
     font-size: 1.2rem;
     font-weight: 500;

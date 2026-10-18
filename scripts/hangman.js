@@ -1,3 +1,5 @@
+// Fixed version - waits for DOM
+document.addEventListener("DOMContentLoaded", () => {
 // 1. Data accessed from wordlist.js.
 // 2. Object properties: word, hint
 // 3. Set Dom elements as variables
@@ -20,7 +22,7 @@ let allAvatarImages = document.querySelectorAll(".avatarImage");
 let headingUsername = document.getElementById("game__heading__name");
 let gameOutcomeImage = document.getElementById("game__outcome__img");
 let startButton = document.querySelector(".game__start__button");
-let letterSpans = wordDisplay.querySelectorAll(".letterSpan");
+let letterSpans = wordDisplay ? wordDisplay.querySelectorAll(".letterSpan") : [];
 let gameOutcomeText = document.getElementById("game__outcome__text");
 let tableBody = document.querySelector("#game__outcome__bestscores tbody");
 let randomNumber = Math.floor(Math.random() * wordList.length);
@@ -162,7 +164,7 @@ const createAvatarButtons = (avatars) => {
     button.innerHTML = `<img class="avatarImage" src="${avatarPath}" alt="avatar image">`;
     button.addEventListener("click", () => {
       // 11.2 Remove the 'active' class from all avatar buttons
-      allAvatarButtons.forEach((btn) => {
+      document.querySelectorAll(".avatarButton").forEach((btn) => {
         btn.classList.remove("active");
       });
       // 11.3 Add the 'active' class to the clicked button
@@ -269,7 +271,7 @@ const resetGame = () => {
   avatar.innerHTML = ""; // Remove all child nodes
   createAvatarButtons(avatars);
   // 20.6 Reset the avatar selection and remove grayscale filter
-  allAvatarImages.forEach((img) => {
+  document.querySelectorAll(".avatarImage").forEach((img) => {
     // 20.7 Remove grayscale filter
     img.style.filter = "none";
   });
@@ -378,3 +380,4 @@ const updateBestScoresTable = () => {
     tableBody.insertAdjacentHTML("beforeend", row);
   });
 };
+});
